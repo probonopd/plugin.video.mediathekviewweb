@@ -17,7 +17,7 @@ import re
 
 try:
     from _fetchgae import _defaultFetcher
-except ImportError, e:
+except ImportError as e:
     from _fetch import _defaultFetcher
 
 log = errorhandler.ErrorHandler()
@@ -759,7 +759,7 @@ class _Namespaces(object):
     def __getitem__(self, prefix):
         try:
             return self.namespaces[prefix]
-        except KeyError, e:
+        except KeyError as e:
             self._log.error('Prefix %s not found.' % prefix,
                             error=xml.dom.NamespaceErr)
 
@@ -929,11 +929,11 @@ def _readUrl(url, fetcher=None, overrideEncoding=None, parentEncoding=None):
                 # encoding may still be wrong if encoding *is lying*!
                 try:
                     decodedCssText = codecs.lookup("css")[1](content, encoding=encoding)[0]
-                except AttributeError, ae:
+                except AttributeError as ae:
                     # at least in GAE
                     decodedCssText = content.decode(encoding if encoding else 'utf-8')
                     
-            except UnicodeDecodeError, e:
+            except UnicodeDecodeError as e:
                 log.warn(e, neverraise=True)
                 decodedCssText = None
 

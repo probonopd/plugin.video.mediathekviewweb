@@ -215,7 +215,7 @@ class Tokenizer(object):
                                 try:
                                     # get actual ATKEYWORD SYM
                                     name = self._atkeywords[_normalize(found)]
-                                except KeyError, e:
+                                except KeyError as e:
                                     # might also be misplace @charset...
                                     if ('@charset' == found and
                                           has_at(text, pos + len(found), u' ')):
